@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: User provides text in the field and clicks the "Save" button
+    Note right of browser: spa.js form.onsubmit event adds the text to the <ul>
+    
+    browser ->>+server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    server -->>-browser: new_note_spa {message: "note created"}
