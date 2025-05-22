@@ -4,6 +4,23 @@ const SurveyButton = ({ text, onClick }) => {
   return <button onClick={onClick}>{text}</button>
 }
 
+const Statistics = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad
+  const average = (good - bad) / all
+
+  return (
+    <>
+      <h2>statistics</h2>
+      <div>good {good}</div>
+      <div>neutral {neutral}</div>
+      <div>bad {bad}</div>
+      <div>all {all}</div>
+      <div>average {average}</div>
+      <div>positive {good * 100 / all}%</div>
+    </>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -13,9 +30,6 @@ const App = () => {
   const incrementGood = () => setGood(good + 1)
   const incrementNeutral = () => setNeutral(neutral + 1)
   const incrementBad = () => setBad(bad + 1)
-  
-  const all = good + neutral + bad
-  const average = (good - bad) / all
 
   return (
     <div>
@@ -23,13 +37,7 @@ const App = () => {
       <SurveyButton text={'good'} onClick={incrementGood} />
       <SurveyButton text={'neutral'} onClick={incrementNeutral} />
       <SurveyButton text={'bad'} onClick={incrementBad} />
-      <h2>statistics</h2>
-      <div>good {good}</div>
-      <div>neutral {neutral}</div>
-      <div>bad {bad}</div>
-      <div>all {all}</div>
-      <div>average {average}</div>
-      <div>positive {good*100/all}%</div>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
